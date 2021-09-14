@@ -80,11 +80,9 @@ void mergeSortHelper(int input[], int start, int end){
 
 
 void mergeSort(int input[], int size){
-    int mid = (0 + (size - 1))/2;
-    mergeSortHelper(input, 0, mid);
-    mergeSortHelper(input, mid + 1, size - 1);
-    
-    mergeArray(input, 0, size - 1, mid);
+ 
+    mergeSortHelper(input, 0, size - 1);
+
 }
 
 
