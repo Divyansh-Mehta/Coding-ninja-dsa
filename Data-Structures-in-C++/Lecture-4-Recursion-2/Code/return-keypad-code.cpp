@@ -34,183 +34,50 @@ cf
 #include <string>
 using namespace std;
 
-#include <string>
-using namespace std;
-
+string helper(int n)
+{
+    string code[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    return code[n];
+}
 int keypad(int num, string output[])
 {
-    /* Insert all the possible combinations of the integer number into the output string array. You do not need to
-    print anything, just return the number of strings inserted into the array.
-    */
-    if (num == 0)
+
+    if (num == 0 || num == 1)
     {
         output[0] = "";
         return 1;
     }
 
     int smalloutput = keypad(num / 10, output);
-
-    if (num % 10 == 2)
+    int no = num % 10;
+    int size;
+    string code = helper(no - 2);
+    if (no == 2 || no == 3 || no == 4 || no == 5 || no == 6 || no == 8)
     {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "b";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "c";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "a";
-        }
-        return smalloutput * 3;
+        size = 3;
     }
-    else if (num % 10 == 3)
+    else
     {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "e";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "f";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "d";
-        }
-        return smalloutput * 3;
-    }
-    else if (num % 10 == 4)
-    {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "h";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "i";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "g";
-        }
-        return smalloutput * 3;
+        size = 4;
     }
 
-    else if (num % 10 == 5)
+    for (int i = size - 1; i >= 0; i--)
     {
-        for (int i = 0; i < smalloutput; i++)
+        for (int j = 0; j < smalloutput; j++)
         {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "k";
+            if (i == 0)
+            {
+                output[j] += code[i];
+            }
+            else
+            {
+                output[j + (smalloutput * (size - i))] = output[j];
+                output[j + (smalloutput * (size - i))] += code[i];
+            }
         }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "l";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "j";
-        }
-        return smalloutput * 3;
     }
 
-    else if (num % 10 == 6)
-    {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "n";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "o";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "m";
-        }
-        return smalloutput * 3;
-    }
-
-    else if (num % 10 == 7)
-    {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "q";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "r";
-        }
-
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (3 * smalloutput)] = output[i];
-            output[i + (3 * smalloutput)] += "s";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "p";
-        }
-        return smalloutput * 4;
-    }
-
-    else if (num % 10 == 8)
-    {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "u";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "v";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "t";
-        }
-        return smalloutput * 3;
-    }
-
-    else if (num % 10 == 9)
-    {
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + smalloutput] = output[i];
-            output[i + smalloutput] += "x";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (2 * smalloutput)] = output[i];
-            output[i + (2 * smalloutput)] += "y";
-        }
-
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i + (3 * smalloutput)] = output[i];
-            output[i + (3 * smalloutput)] += "z";
-        }
-        for (int i = 0; i < smalloutput; i++)
-        {
-            output[i] += "w";
-        }
-        return smalloutput * 4;
-    }
+    return smalloutput * size;
 }
 
 int main()

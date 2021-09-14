@@ -30,11 +30,11 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
-void swap(int input[], int i, int j)
+void swap(int &a, int &b)
 {
-    int temp = input[i];
-    input[i] = input[j];
-    input[j] = temp;
+    int temp = a;
+    a = b;
+    a = temp;
 }
 
 int partition(int input[], int start, int end)
@@ -47,7 +47,7 @@ int partition(int input[], int start, int end)
             smaller++;
         }
     }
-    swap(input, start, start + smaller);
+    swap(input[start], input[start + smaller]);
     int i = start;
     int j = end;
     while (i < start + smaller && j > start + smaller)
@@ -58,7 +58,7 @@ int partition(int input[], int start, int end)
             j--;
         if (i < start + smaller && j > start + smaller)
         {
-            swap(input, i, j);
+            swap(input[i], input[j]);
             i++;
             j--;
         }
