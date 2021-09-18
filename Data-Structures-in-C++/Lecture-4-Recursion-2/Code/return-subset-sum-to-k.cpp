@@ -51,28 +51,25 @@ int subsetSumToK(int input[], int n, int output[][50], int k)
     int output1[10000][50], output2[10000][50];
     int size1 = subsetSumToK(input + 1, n - 1, output1, k - input[0]);
     int size2 = subsetSumToK(input + 1, n - 1, output2, k);
-    int l = 0;
     for (int i = 0; i < size1; i++)
     {
         int s1 = output1[i][0];
         for (int j = 1; j <= s1; j++)
         {
-            output[l][j + 1] = output1[i][j];
+            output[i][j + 1] = output1[i][j];
         }
-        output[l][0] = s1 + 1;
-        output[l][1] = input[0];
-        l++;
+        output[i][0] = s1 + 1;
+        output[i][1] = input[0];
     }
 
     for (int i = 0; i < size2; i++)
     {
         for (int j = 0; j <= output2[i][0]; j++)
         {
-            output[l][j] = output2[i][j];
+            output[i + size1][j] = output2[i][j];
         }
-        l++;
     }
-    return l;
+    return size1 + size2;
 }
 
 int main()

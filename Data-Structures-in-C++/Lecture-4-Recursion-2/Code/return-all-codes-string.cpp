@@ -48,18 +48,15 @@ int getCodes(string input, string output[10000])
             size2 = getCodes(input.substr(2), output2);
         }
     }
-    int k = 0;
     for (int i = 0; i < size1; i++)
     {
-        output[k] = firstchar + output1[i];
-        k++;
+        output[i] = firstchar + output1[i];
     }
     for (int i = 0; i < size2; i++)
     {
-        output[k] = secondchar + output2[i];
-        k++;
+        output[i + size1] = secondchar + output2[i];
     }
-    return k;
+    return size1 + size2;
 }
 
 int main()
