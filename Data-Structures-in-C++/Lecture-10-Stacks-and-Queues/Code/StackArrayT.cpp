@@ -1,5 +1,4 @@
 template <typename T>
-
 class StackArrayT{
   private:
     T *data;
