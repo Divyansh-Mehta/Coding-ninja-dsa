@@ -92,26 +92,83 @@ TreeNode<int>* getSecondLargestNode(TreeNode<int>* root) {
 */
 
 //Approach-2
+class Pair
+{
+public:
+    TreeNode<int> *largest;
+    TreeNode<int> *secondLargest;
+};
 
+Pair helper(TreeNode<int> *root)
+{
+    Pair ans;
+    ans.largest = root;
+    ans.secondLargest = NULL;
 
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        Pair smallAns = helper(root->children[i]);
+        if (smallAns.largest->data > ans.largest->data)
+        {
+            if (smallAns.secondLargest == NULL)
+            {
+                ans.secondLargest = ans.largest;
+                ans.largest = smallAns.largest;
+            }
+            else
+            {
+                if (smallAns.secondLargest->data > ans.largest->data)
+                {
+                    ans.secondLargest = smallAns.secondLargest;
+                    ans.largest = smallAns.largest;
+                }
+                else
+                {
+                    ans.secondLargest = ans.largest;
+                    ans.largest = smallAns.largest;
+                }
+            }
+        }
+        else
+        {
+            if ((ans.largest->data != smallAns.largest->data) &&
+                (ans.secondLargest == NULL || smallAns.largest->data > ans.secondLargest->data))
+            {
+                ans.secondLargest = smallAns.largest;
+            }
+        }
+    }
+    return ans;
+}
+TreeNode<int> *getSecondLargestNode(TreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    return helper(root).secondLargest;
+}
 
-TreeNode<int>* takeInputLevelWise() {
+TreeNode<int> *takeInputLevelWise()
+{
     int rootData;
     cin >> rootData;
-    TreeNode<int>* root = new TreeNode<int>(rootData);
+    TreeNode<int> *root = new TreeNode<int>(rootData);
 
-    queue<TreeNode<int>*> pendingNodes;
+    queue<TreeNode<int> *> pendingNodes;
 
     pendingNodes.push(root);
-    while (pendingNodes.size() != 0) {
-        TreeNode<int>* front = pendingNodes.front();
+    while (pendingNodes.size() != 0)
+    {
+        TreeNode<int> *front = pendingNodes.front();
         pendingNodes.pop();
         int numChild;
         cin >> numChild;
-        for (int i = 0; i < numChild; i++) {
+        for (int i = 0; i < numChild; i++)
+        {
             int childData;
             cin >> childData;
-            TreeNode<int>* child = new TreeNode<int>(childData);
+            TreeNode<int> *child = new TreeNode<int>(childData);
             front->children.push_back(child);
             pendingNodes.push(child);
         }
@@ -120,15 +177,18 @@ TreeNode<int>* takeInputLevelWise() {
     return root;
 }
 
-int main() {
-    TreeNode<int>* root = takeInputLevelWise();
+int main()
+{
+    TreeNode<int> *root = takeInputLevelWise();
 
-    TreeNode<int>* ans = getSecondLargestNode(root);
+    TreeNode<int> *ans = getSecondLargestNode(root);
 
-    if (ans != NULL) {
+    if (ans != NULL)
+    {
         cout << ans->data;
-    } else {
+    }
+    else
+    {
         cout << INT_MIN;
     }
-
 }
