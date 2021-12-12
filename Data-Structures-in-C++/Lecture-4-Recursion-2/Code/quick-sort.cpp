@@ -34,7 +34,7 @@ void swap(int &a, int &b)
 {
     int temp = a;
     a = b;
-    a = temp;
+    b = temp;
 }
 
 int partition(int input[], int start, int end)
