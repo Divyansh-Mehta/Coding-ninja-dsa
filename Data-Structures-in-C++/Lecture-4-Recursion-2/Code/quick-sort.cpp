@@ -30,40 +30,29 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
-void swap(int &a, int &b)
-{
-    int temp = a;
-    a = b;
-    a = temp;
+void swap(int* a, int* b) 
+{ 
+    int t = *a; 
+    *a = *b; 
+    *b = t; 
 }
 
-int partition(int input[], int start, int end)
-{
-    int smaller = 0;
-    for (int i = start + 1; i <= end; i++)
-    {
-        if (input[start] >= input[i])
-        {
-            smaller++;
-        }
-    }
-    swap(input[start], input[start + smaller]);
-    int i = start;
-    int j = end;
-    while (i < start + smaller && j > start + smaller)
-    {
-        while (input[i] <= input[start + smaller])
-            i++;
-        while (input[j] > input[start + smaller])
-            j--;
-        if (i < start + smaller && j > start + smaller)
-        {
-            swap(input[i], input[j]);
-            i++;
-            j--;
-        }
-    }
-    return start + smaller;
+int partition (int arr[], int low, int high) 
+{ 
+    int pivot = arr[high]; // pivot 
+    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+  
+    for (int j = low; j <= high - 1; j++) 
+    { 
+        // If current element is smaller than the pivot 
+        if (arr[j] < pivot) 
+        { 
+            i++; // increment index of smaller element 
+            swap(&arr[i], &arr[j]); 
+        } 
+    } 
+    swap(&arr[i + 1], &arr[high]); 
+    return (i + 1); 
 }
 
 void quickSortHelper(int input[], int start, int end)
