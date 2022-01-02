@@ -91,7 +91,7 @@ bool solveSudokuHelper(int grid[][N], int row, int col){
 }
 
 bool solveSudoku(int grid[][N]){
-    solveSudokuHelper(grid, 0, 0);
+    return solveSudokuHelper(grid, 0, 0);
 }
 
 int main(){
