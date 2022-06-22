@@ -44,6 +44,7 @@ Sample Output 2:
 #include <iostream>
 using namespace std;
 
+// Approach - 1 Time o(n^2)
 int duplicateNumber(int *arr, int size)
 {
     //Write your code here
@@ -53,6 +54,18 @@ int duplicateNumber(int *arr, int size)
             return arr[i];
         }
     }
+}
+
+//Approach - 2 Time :- O(n)
+int duplicateNumber2(int *arr, int size)
+{
+    int sum = 0, actualSum = (size - 1) * (size - 2) / 2;;
+    
+    for (int i = 0; i < size; i++){
+        sum += arr[i];
+    }
+
+    return sum - actualSum;
 }
 
 int main()

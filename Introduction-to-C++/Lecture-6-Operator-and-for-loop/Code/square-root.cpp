@@ -41,6 +41,7 @@ int sqroot(int n){
             return mid;
         }
         
+        // We wrote conditions in this way so that it wont cross int limit
         if (mid <= n / mid){
             l = mid + 1;
             ans = mid;

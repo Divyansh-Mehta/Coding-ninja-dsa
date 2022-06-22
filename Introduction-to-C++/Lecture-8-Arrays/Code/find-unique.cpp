@@ -44,24 +44,52 @@ Sample Output 2:
 */
 
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
+// Approach - 1 O(n^2)
 int findUnique(int *arr, int size)
 {
-    //Write your code here
-    
-    for(int i = 0; i < size; i++){
-        bool found = false;
-        for(int j = 0; j < size; j++){
-            if(arr[i] == arr[j] && i != j){
-                found = true;
-                break;
-            }
-        }
-        if (!found){
-            return arr[i];
-        }
+	for (int i = 0; i < size; i++)
+	{
+		bool found = false;
+		for (int j = 0; j < size; j++)
+		{
+			if (arr[i] == arr[j] && i != j)
+			{
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+		{
+			return arr[i];
+		}
+	}
+}
+
+// Approach - 2 // O(nlogn)
+int findUnique2(int *arr, int size)
+{
+	sort(arr, arr + size);
+	for (int i = 0; i < size; i += 2)
+	{
+		if (arr[i] != arr[i + 1])
+		{
+			return arr[i];
+		}
+	}
+	return arr[size - 1];
+}
+
+// Approach - 3 //O(n)
+int findUnique3(int *arr, int size)
+{
+    int xOr = 0;
+    for (int i = 0; i < size; i++){
+        xOr ^= arr[i];
     }
+    return xOr;
 }
 
 int main()
@@ -86,3 +114,8 @@ int main()
 
 	return 0;
 }
+
+/* Summary
+unsorted :- best time :- O(n) using xor
+sorted :- best time :- O(logn) using binary Search
+*/
