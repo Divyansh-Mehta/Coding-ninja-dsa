@@ -46,6 +46,7 @@ Sample Output 2:
 #include <algorithm>
 using namespace std;
 
+//Time: - O(n) Space: - O(1)
 void sortZeroesAndOne(int *input, int size)
 {
     int i = 0, j = size - 1;
@@ -57,8 +58,6 @@ void sortZeroesAndOne(int *input, int size)
         int temp = input[i];
         input[i] = input[j];
         input[j] = temp;
-        i++;
-        j--;
     }
 }
 

@@ -53,8 +53,11 @@ For the second query, we have 2 pairs in total that sum up to 10. They are, (2, 
 */
 
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
+
+//Approach 1 :- Time: - O(n^ 2) Space :- O(1)
 int pairSum(int *input, int size, int x)
 {
 	//Write your code here
@@ -66,6 +69,44 @@ int pairSum(int *input, int size, int x)
         }
     }
     return count;
+}
+
+//Approach 2 - Time: - O(nlogn) Space: - O(1)
+int pairSum(int *input, int size, int x)
+{
+	sort(input, input + size);
+    int i = 0, j = size - 1, ans = 0;
+    while (i < j){
+        if (input[i] + input[j] == x){
+            if (input[i] != input[j]){
+	            int count1 = 1, count2 = 1;
+            	i++;
+            	j--;
+    	        while (input[i] == input[i - 1]){
+        	        count1++;
+            	    i++;
+            	}
+            	while (input[j] == input[j + 1]){
+                	count2++;
+	                j--;
+    	        }      
+                ans += count1 * count2;
+            }
+            else{
+                int count = j - i + 1;
+                ans += count * (count - 1) / 2;
+				break;
+            }
+        }
+        else if (input[i] + input[j] > x){
+            j--;
+        }
+        else{
+            i++;
+        }
+    }
+	
+    return ans;
 }
 
 int main()

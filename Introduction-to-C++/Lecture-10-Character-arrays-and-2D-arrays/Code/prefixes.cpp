@@ -2,6 +2,7 @@
 #include<cstring>
 using namespace std;
 
+//Time :- O(n^2) Space: - O(1)
 void printaallprefixes(char str[]){
     for (int i = 0; str[i] != '\0'; i++){
 

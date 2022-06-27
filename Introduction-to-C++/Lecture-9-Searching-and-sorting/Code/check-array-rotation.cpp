@@ -42,9 +42,10 @@ Sample Output 2:
 #include <iostream>
 using namespace std;
 
+
+//Time: - O(n) Space: - O(1)
 int arrayRotateCheck(int *input, int size)
 {
-    //Write your code here
   for (int i = 0; i < size - 1; i++){
       if (input[i] > input[i + 1]){
           return i + 1;

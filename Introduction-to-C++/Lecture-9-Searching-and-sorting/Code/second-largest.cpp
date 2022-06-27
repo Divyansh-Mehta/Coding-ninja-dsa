@@ -50,22 +50,24 @@ Sample Output 3:
 #include <iostream>
 using namespace std;
 
+
+//Time: - O(n) Space: - O(1)
 int findSecondLargest(int *input, int n)
 {
-    int largest = -2147483648, second_largest = -2147483648;
+    int largest = -2e31, secondLargest = -2e31;
     for (int i = 0; i < n; i++)
     {
         if (input[i] > largest)
         {
-            second_largest = largest;
+            secondLargest = largest;
             largest = input[i];
         }
-        if (input[i] > second_largest && input[i] < largest)
+        if (input[i] > secondLargest && input[i] < largest)
         {
-            second_largest = input[i];
+            secondLargest = input[i];
         }
     }
-    return second_largest;
+    return secondLargest;
 }
 
 int main()

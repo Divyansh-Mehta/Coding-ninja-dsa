@@ -4,7 +4,7 @@ Code Insertion Sort
 Provided with a random integer array/list(ARR) of size N, you have been required to sort this array using 'Insertion Sort'.
  Note:
 Change in the input array/list itself. You don't need to return or print the elements.
- 
+
 Input format :
 The first line contains an Integer 't' which denotes the number of test cases or queries to be run. Then the test cases follow.
 
@@ -38,7 +38,7 @@ Sample Input 2:
 4 3 2 1
 Sample Output 2:
 0 2 3 6 9
-1 2 3 4 
+1 2 3 4
 */
 
 #include <iostream>
@@ -50,13 +50,12 @@ void insertionSort(int *input, int size)
     {
         int temp = input[i];
         int j = i - 1;
-        while (input[j] > temp && j >= 0)
+        while (j >= 0 && input[j] > temp)
         {
             input[j + 1] = input[j];
             j--;
         }
-        j++;
-        input[j] = temp;
+        input[j + 1] = temp;
     }
 }
 

@@ -53,21 +53,65 @@ For the second query, we have 5 triplets in total that sum up to 10. They are, (
 */
 
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
+//Approach - 1 Time: - O(n^3) Space: - O(1)
 int tripletSum(int *input, int size, int x)
 {
+	int count = 0;
+	for (int i = 0; i < size - 2; i++){
+	    for (int j = i + 1; j < size - 1; j++){
+        	for (int k = j + 1; k < size; k ++){
+            	if (input[i] + input[j] + input[k] == x)
+                	count++;
+        	}
+    	}
+	}	
+    return count;
+}
 
-    int count = 0;
-for (int i = 0; i < size - 2; i++){
-    for (int j = i + 1; j < size - 1; j++){
-        for (int k = j + 1; k < size; k ++){
-            if (input[i] + input[j] + input[k] == x)
-                count++;
+//Appraoch - 2 Time: - O(n^2) Space: - O(1)
+int tripletSum(int *input, int size, int x)
+{
+		sort(input, input + size);
+        int ans = 0;
+        for (int k = 0; k < size; k++)
+        {
+            int i = k + 1;
+            int j = size - 1;
+            int xr = x - input[k];
+            while (i < j){
+        	if (input[i] + input[j] == xr){
+            if (input[i] != input[j]){
+	            int count1 = 1, count2 = 1;
+            	i++;
+            	j--;
+    	        while (input[i] == input[i - 1]){
+        	        count1++;
+            	    i++;
+            	}
+            	while (input[j] == input[j + 1]){
+                	count2++;
+	                j--;
+    	        }      
+                ans += count1 * count2;
+            }
+            else{
+                int count = j - i + 1;
+                ans += count * (count - 1) / 2;
+				break;
+            }
+        }
+        else if (input[i] + input[j] > xr){
+            j--;
+        }
+        else{
+            i++;
         }
     }
-}
-    return count;
+        }
+        return ans;
 }
 
 int main()

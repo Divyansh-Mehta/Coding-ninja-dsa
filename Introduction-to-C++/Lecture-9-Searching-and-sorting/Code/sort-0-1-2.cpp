@@ -54,6 +54,7 @@ void swap(int *arr, int i, int j)
     arr[j] = temp;
 }
 
+//Time: - O(n) Space: - O(1)
 void sort012(int *arr, int n)
 {
 

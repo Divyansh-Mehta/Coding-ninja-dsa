@@ -43,25 +43,25 @@ Sample Input 2:
 9 0 0 8 2
 Sample Output 2:
 3 2 0 0 0
-9 8 2 0 0 
+9 8 2 0 0
 */
-
 
 #include <iostream>
 using namespace std;
 
 void pushZeroesEnd(int *input, int size)
 {
-   int nonzero = 0;
-   for (int i = 0; i < size; i++){
-       if (input[i] != 0){
-           int temp = input[i];
-           input[i] = input[nonzero];
-           input[nonzero] = temp;
-           nonzero++;
-       }
-   }
-
+	int nonzeroIndex = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (input[i] != 0)
+		{
+			int temp = input[i];
+			input[i] = input[nonzeroIndex];
+			input[nonzeroIndex] = temp;
+			nonzeroIndex++;
+		}
+	}
 }
 
 int main()
@@ -69,7 +69,7 @@ int main()
 
 	int t;
 	cin >> t;
-	
+
 	while (t--)
 	{
 

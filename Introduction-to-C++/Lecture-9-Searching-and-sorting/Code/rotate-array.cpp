@@ -50,12 +50,14 @@ Sample Output 2:
 #include <iostream>
 using namespace std;
 
+
 void swap(int *input, int i, int j){
     int temp = input[i];
     input[i] = input[j];
     input[j] = temp;
 }
 
+//Time: - O(n) Space: - O(1)
 void reverse(int *input, int start, int end){
     int i = start, j = end;
     while (i < j){
@@ -64,17 +66,21 @@ void reverse(int *input, int start, int end){
         j--;
     }
 }
+
+//Time: - O(n) Space: - O(1)
 void rotate(int *input, int d, int n){
-    if (d >= n && n != 0){
-        d = d % n;
-    }
-    else if (n == 0){
+    if (n == 0){
         return;
     }
+
+	d = d % n;
+
     reverse(input, 0, n - 1);
     reverse(input, 0, n - d - 1);
     reverse(input, n - d, n - 1);
 }
+
+
 int main()
 {
 	int t;

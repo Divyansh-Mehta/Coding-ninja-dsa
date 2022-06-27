@@ -42,21 +42,19 @@ o
 #include <cstring>
 using namespace std;
 
-void printSubstrings(char input[])
-{
-    int n = strlen(input);
-    for (int i = 0; input[i] != '\0'; i++)
-    {
-        for (int j = 0; j < n - i; j++)
-        {
-            for (int k = i; k <= i + j; k++)
-            {
+
+//Time: - O(n^3) Space: - O(1)
+void printSubstrings(char input[]) {
+    for (int i = 0; i < strlen(input); i++){
+        for (int j = i; j < strlen(input); j++){
+            for (int k = i; k <= j; k++){
                 cout << input[k];
             }
             cout << endl;
         }
     }
 }
+
 
 int main()
 {

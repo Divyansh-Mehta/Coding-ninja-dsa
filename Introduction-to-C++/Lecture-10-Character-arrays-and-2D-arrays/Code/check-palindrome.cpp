@@ -47,16 +47,15 @@ int length(char str[])
     return i;
 }
 
+//Time: - O(n) Space: - O(1)
 bool checkPalindrome(char str[])
 {
 
     int i = 0, j = length(str) - 1;
     while (i < j)
     {
-        if (str[i] != str[j])
+        if (str[i++] != str[j--])
             return false;
-        i++;
-        j--;
     }
     return true;
 }

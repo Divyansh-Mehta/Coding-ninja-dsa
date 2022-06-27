@@ -23,6 +23,8 @@ abcdefghi
 #include <cstring>
 using namespace std;
 
+
+//Time: - O(n) Space: - O(1)
 void trimSpaces(char input[])
 {
 
@@ -31,12 +33,12 @@ void trimSpaces(char input[])
     {
         if (input[i] != ' ')
         {
-            input[k] = input[i];
-            k++;
+            input[k++] = input[i];
         }
     }
     input[k] = '\0';
 }
+
 
 int main()
 {

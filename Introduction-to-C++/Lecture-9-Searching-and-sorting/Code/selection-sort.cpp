@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+
+//Time: - O(n^2) Space: - O(1)
 void selectionSort(int arr[], int n)
 {
 

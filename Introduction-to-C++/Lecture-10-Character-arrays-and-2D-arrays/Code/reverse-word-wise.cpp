@@ -30,46 +30,38 @@ using namespace std;
 int length(char input[])
 {
     int i = 0;
-    while (1)
+    while (input[i] != '\0')
     {
-        if (input[i] == '\0')
-        {
-            return i;
-        }
         i++;
     }
+    return i;
 }
 
 void reverse(char input[], int start, int end)
 {
     while (start < end)
     {
-        int temp = input[start];
-        input[start] = input[end];
-        input[end] = temp;
-        start++;
-        end--;
+        char temp = input[start];
+        input[start++] = input[end];
+        input[end--] = temp;
     }
 }
+
+// Time: - O(n) Space: - O(1)
 void reverseStringWordWise(char input[])
 {
     int n = length(input), j = 0, i = 0;
     reverse(input, 0, n - 1);
-    while (1)
+    while (input[i] != '\0')
     {
         if (input[i] == ' ')
         {
             reverse(input, j, i - 1);
             j = i + 1;
         }
-        else if (input[i] == '\0')
-        {
-            reverse(input, j, i - 1);
-            break;
-        }
-
         i++;
     }
+    reverse(input, j, i - 1);
 }
 
 int main()

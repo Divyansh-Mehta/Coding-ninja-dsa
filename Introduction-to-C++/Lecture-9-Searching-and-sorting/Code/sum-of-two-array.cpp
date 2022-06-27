@@ -62,6 +62,8 @@ Sample Output 2:
 #include <iostream>
 using namespace std;
 
+
+// Time: - O(n) Space: -O(1) (Not considering Space required for answer)
 void sumOfTwoArrays(int *input1, int size1, int *input2, int size2, int *output)
 {
 
@@ -97,6 +99,20 @@ void sumOfTwoArrays(int *input1, int size1, int *input2, int size2, int *output)
             carry = 0;
             n--;
         }
+    }
+}
+
+
+//Better and concise code
+void sumOfTwoArrays(int *input1, int size1, int *input2, int size2, int *output)
+{
+    int i = size1 - 1, j = size2 - 1, k = (size1 < size2)? size2: size1;
+    int carry = 0;
+    while (k >= 0){
+        int sum = (i >= 0)? input1[i--]: 0;
+        sum += (j >= 0)? input2[j--]: 0;
+        output[k--] = (sum + carry) % 10;
+        carry = (sum + carry) / 10;
     }
 }
 

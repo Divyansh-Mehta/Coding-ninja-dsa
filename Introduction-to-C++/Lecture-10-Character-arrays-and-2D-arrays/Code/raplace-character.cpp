@@ -24,6 +24,8 @@ xbxcd
 #include <cstring>
 using namespace std;
 
+
+//Time: - O(n) Space: - O(1)
 void replaceCharacter(char input[], char c1, char c2)
 {
 
@@ -33,6 +35,7 @@ void replaceCharacter(char input[], char c1, char c2)
             input[i] = c2;
     }
 }
+
 
 int main()
 {

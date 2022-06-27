@@ -52,6 +52,8 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
+
+//Time: - O(n + m) Space: - O(1)
 void merge(int *arr1, int size1, int *arr2, int size2, int *ans)
 {
     int i = 0, j = 0, k = 0;

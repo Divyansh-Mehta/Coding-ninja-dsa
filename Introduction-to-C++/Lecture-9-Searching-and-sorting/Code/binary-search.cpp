@@ -62,6 +62,28 @@ int binarySearch(int *input, int n, int val)
     return -1;
 }
 
+//More advance
+int binarySearch(int *input, int n, int val)
+{
+    int l = 0, h = n - 1;
+	
+    while (l <= h){
+        //To make sure it doesnot cross int limit 
+        int mid = l + (h - l) / 2;
+        
+        if (input[mid] == val){
+            return mid;
+        }
+        else if (input[mid] < val){
+            l = mid + 1;
+        }
+        else {
+            h = mid - 1;
+        }
+    }
+    return -1;
+}
+
 int main()
 {
 
