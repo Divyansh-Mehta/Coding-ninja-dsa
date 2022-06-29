@@ -33,58 +33,64 @@ Time Limit: 1sec
 
 Sample Input 1:
 1
-4 4 
-1 2 3 4 
-5 6 7 8 
-9 10 11 12 
+4 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
 13 14 15 16
 Sample Output 1:
-1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10 
+1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
 
 Sample Input 2:
 2
-3 3 
-1 2 3 
-4 5 6 
+3 3
+1 2 3
+4 5 6
 7 8 9
 3 1
 10
 20
 30
 Sample Output 2:
-1 2 3 6 9 8 7 4 5 
-10 20 30 
+1 2 3 6 9 8 7 4 5
+10 20 30
 */
 
 #include <iostream>
 using namespace std;
+
+// Time: - O(mn) Space: - O(1)
 void spiralPrint(int **input, int nRows, int nCols)
-{	
-    //Write your code here
-    int rs = 0, re = nRows - 1, cs = 0, ce = nCols - 1, count  = 0, elements =  nRows * nCols;
-    while (count < elements){
-        for (int i = cs; i <= ce; i++){
+{
+    int rs = 0, re = nRows - 1, cs = 0, ce = nCols - 1, count = 0, elements = nRows * nCols;
+    while (count < elements)
+    {
+        for (int i = cs; i <= ce && count < elements; i++)
+        {
             cout << input[rs][i] << " ";
             count++;
         }
         rs++;
-        for (int i = rs; i <= re; i++){
+        for (int i = rs; i <= re && count < elements; i++)
+        {
             cout << input[i][ce] << " ";
             count++;
         }
         ce--;
-        for (int i = ce; i >= cs; i--){
+        for (int i = ce; i >= cs && count < elements; i--)
+        {
             cout << input[re][i] << " ";
             count++;
         }
         re--;
-        for (int i = re; i >= rs; i--){
+        for (int i = re; i >= rs && count < elements; i--)
+        {
             cout << input[i][cs] << " ";
             count++;
         }
         cs++;
     }
-} 
+}
 
 int main()
 {

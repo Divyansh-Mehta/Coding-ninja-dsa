@@ -44,32 +44,31 @@ In the given string 'a' is repeated 3 times, 'b' is repeated 2 times, 'c' is occ
 #include <string>
 using namespace std;
 
-string getCompressedString(string &str)
+//Time: - O(n) Space: - O(1)
+string getCompressedString(string &input)
 {
-    string ans;
-    int count = 1;
-    for (int i = 0; i < str.size(); i++)
+    int count = 1, j = 0;
+    char lastCh = input[0];
+    for (int i = 1; i <= input.length(); i++)
     {
-        char x = str[i];
-        if (x != str[i + 1])
+        if (input[i] == lastCh)
         {
-            if (count == 1)
-            {
-                ans += x;
-            }
-            else
-            {
-                ans += x;
-                ans += count + '0';
-            }
+            count++;
+        }
+        else if (count > 1)
+        {
+            input[j++] = lastCh;
+            input[j++] = count + '0';
+            lastCh = input[i];
             count = 1;
         }
         else
         {
-            count++;
+            input[j++] = lastCh;
+            lastCh = input[i];
         }
     }
-    return ans;
+    return input.substr(0, j);
 }
 
 int main()

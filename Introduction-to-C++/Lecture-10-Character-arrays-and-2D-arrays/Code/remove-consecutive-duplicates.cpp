@@ -39,6 +39,7 @@ xyzx
 #include <cstring>
 using namespace std;
 
+//Time: - O(n) Space: - O(1)
 void removeConsecutiveDuplicates(char input[])
 {
     char lastchar = input[0];
@@ -47,9 +48,8 @@ void removeConsecutiveDuplicates(char input[])
     {
         if (input[i] != lastchar)
         {
-            input[j] = input[i];
+            input[j++] = input[i];
             lastchar = input[i];
-            j++;
         }
     }
     input[j] = '\0';

@@ -16,7 +16,7 @@ Input Format:
 The first and only line of input contains a string without any leading and trailing spaces.
 
 Output Format:
-The only line of output prints the updated string. 
+The only line of output prints the updated string.
 
 Note:
 You are not required to print anything explicitly. It has already been taken care of.
@@ -42,24 +42,26 @@ x
 #include <cstring>
 using namespace std;
 
+
+//Time: - O(n) Space: - O(1)
 char highestOccurringChar(char input[])
 {
-    int freqarr[256] = {0};
+    int freq[26] = {0};
     for (int i = 0; input[i] != '\0'; i++)
     {
-        freqarr[int(input[i])]++;
+        freq[input[i] - 'a']++;
     }
-    int max = 0;
-    char maxchar;
-    for (int i = 0; input[i] != '\0'; i++)
+
+    char ans = input[0];
+    for (int i = 1; input[i] != '\0'; i++)
     {
-        if (freqarr[int(input[i])] > max)
+        if (freq[input[i] - 'a'] > freq[ans - 'a'])
         {
-            max = freqarr[int(input[i])];
-            maxchar = input[i];
+            ans = input[i];
         }
     }
-    return maxchar;
+
+    return ans;
 }
 
 int main()

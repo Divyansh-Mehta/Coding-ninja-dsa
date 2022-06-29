@@ -21,10 +21,11 @@ Sample Output :
 #include <iostream>
 using namespace std;
 
+//Time: - O(mn) Space: - O(1)
 int main()
 {
 
-    int b[1000][1000], n, m;
+    int b[(int)1e3][(int)1e3], n, m;
     cin >> m >> n;
     for (int i = 0; i < m; i++)
     {

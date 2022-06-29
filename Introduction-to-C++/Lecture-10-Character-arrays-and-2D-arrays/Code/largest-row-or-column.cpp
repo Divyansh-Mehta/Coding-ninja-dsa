@@ -34,8 +34,8 @@ Time Limit: 1sec
 
 Sample Input 1 :
 1
-2 2 
-1 1 
+2 2
+1 1
 1 1
 Sample Output 1 :
 row 0 2
@@ -43,8 +43,8 @@ row 0 2
 Sample Input 2 :
 2
 3 3
-3 6 9 
-1 4 7 
+3 6 9
+1 4 7
 2 8 9
 4 2
 1 2
@@ -57,66 +57,76 @@ column 1 342
 */
 
 #include <iostream>
+#include <climits>
 using namespace std;
 
+// Time: - O(mn) Space:- O(1)
 void findLargest(int **input, int nRows, int mCols)
 {
-    //Write your code here
-    int sum = 0, rmax = -2147483648, cmax = -2147483648, rindex = 0, cindex = 0;
-    
-    
-    for (int i = 0; i < mCols; i++){
-        sum = 0;
-        for (int j = 0; j < nRows; j++){
-            sum += input[j][i];
-        }
-            if (sum > cmax){
-                cmax = sum;
-                cindex = i;
-            }
-    }
-    for (int i = 0; i < nRows; i++){
-        sum = 0;
-        for (int j = 0; j < mCols; j++){
+    // Write your code here
+    int ans = INT_MIN, index = 0;
+    bool isRow = true;
+    for (int i = 0; i < nRows; i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < mCols; j++)
+        {
             sum += input[i][j];
         }
-        if (sum > rmax){
-            rmax = sum;
-            rindex = i;
+        if (sum > ans)
+        {
+            index = i;
+            ans = sum;
         }
     }
-    
-    if (rmax > cmax){
-        cout << "row " << rindex << " " << rmax;
+
+    for (int i = 0; i < mCols; i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < nRows; j++)
+        {
+            sum += input[j][i];
+        }
+        if (sum > ans)
+        {
+            index = i;
+            ans = sum;
+            isRow = false;
+        }
     }
-    else if (cmax > rmax){
-        cout << "column " << cindex << " " << cmax;
+
+    if (isRow)
+    {
+        cout << "row"
+             << " " << index << " " << ans << endl;
     }
-    else {
-        cout << "row " << rindex << " " << rmax;
+    else
+    {
+        cout << "column"
+             << " " << index << " " << ans << endl;
     }
 }
 
 int main()
 {
-	int t;
-	cin >> t;
-	while (t--)
-	{
-		int row, col;
-		cin >> row >> col;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int row, col;
+        cin >> row >> col;
 
-		int **input = new int *[row];
-		for (int i = 0; i < row; i++)
-		{
-			input[i] = new int[col];
-			for (int j = 0; j < col; j++)
-			{
-				cin >> input[i][j];
-			}
-		}
+        int **input = new int *[row];
+        for (int i = 0; i < row; i++)
+        {
+            input[i] = new int[col];
+            for (int j = 0; j < col; j++)
+            {
+                cin >> input[i][j];
+            }
+        }
 
-		findLargest(input, row, col);
-		cout << endl;
-	}
+        findLargest(input, row, col);
+        cout << endl;
+    }
 }

@@ -10,7 +10,7 @@ The first line of input contains a string without any leading and trailing space
 The second line of input contains a character(X) without any leading and trailing spaces.
 
 Output Format:
-The only line of output prints the updated string. 
+The only line of output prints the updated string.
 
 Note:
 You are not required to print anything explicitly. It has already been taken care of.
@@ -38,6 +38,8 @@ xxzxx
 #include <cstring>
 using namespace std;
 
+
+//Time: - O(n) Space: -O(1)
 void removeAllOccurrencesOfChar(char input[], char c)
 {
     int j = 0;
@@ -45,8 +47,7 @@ void removeAllOccurrencesOfChar(char input[], char c)
     {
         if (input[i] != c)
         {
-            input[j] = input[i];
-            j++;
+            input[j++] = input[i];
         }
     }
     input[j] = '\0';

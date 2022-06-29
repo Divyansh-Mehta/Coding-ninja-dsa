@@ -10,7 +10,7 @@ Input Format:
 The first and only line of input contains a string without any leading and trailing spaces. The input string represents the sentence given to Aadil.
 
 Output Format:
-The only line of output prints the sentence(string) such that each word in the sentence is reversed. 
+The only line of output prints the sentence(string) such that each word in the sentence is reversed.
 
 Constraints:
 0 <= N <= 10^6
@@ -38,30 +38,24 @@ void reverse(char input[], int start, int end)
     while (start < end)
     {
         int temp = input[start];
-        input[start] = input[end];
-        input[end] = temp;
-        start++;
-        end--;
+        input[start++] = input[end];
+        input[end--] = temp;
     }
 }
 
+//Time: - O(n) Space: - O(1)
 void reverseEachWord(char input[])
 {
-    int i = 0, k = 0;
-    while (1)
+    int k = 0, i;
+    for (i = 0; input[i] != '\0'; i++)
     {
         if (input[i] == ' ')
         {
             reverse(input, k, i - 1);
             k = i + 1;
         }
-        else if (input[i] == '\0')
-        {
-            reverse(input, k, i - 1);
-            break;
-        }
-        i++;
     }
+    reverse(input, k, i - 1);
 }
 
 int main()

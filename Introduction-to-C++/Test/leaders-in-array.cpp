@@ -52,6 +52,32 @@ void Leaders(int *arr, int len)
     cout << arr[len - 1];
 }
 
+// Better solution (using sp) Time: - O(n) Space: - O(n)
+void Leaders(int *arr, int len)
+{
+    int *dp = new int[len];
+    dp[len - 1] = arr[len - 1];
+    for (int i = len - 2; i >= 0; i--)
+    {
+        if (arr[i] > dp[i + 1])
+        {
+            dp[i] = arr[i];
+        }
+        else
+        {
+            dp[i] = dp[i + 1];
+        }
+    }
+
+    for (int i = 0; i < len; i++)
+    {
+        if (arr[i] >= dp[i])
+        {
+            cout << arr[i] << " ";
+        }
+    }
+}
+
 int main()
 {
     int len;

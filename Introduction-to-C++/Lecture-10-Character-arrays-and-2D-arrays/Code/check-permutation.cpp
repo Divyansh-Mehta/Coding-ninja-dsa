@@ -5,8 +5,8 @@ For a given two strings, 'str1' and 'str2', check whether they are a permutation
 Permutations of each other
 Two strings are said to be a permutation of each other when either of the string's characters can be rearranged so that it becomes identical to the other one.
 
-Example: 
-str1= "sinrtg" 
+Example:
+str1= "sinrtg"
 str2 = "string"
 
 The character of the first string(str1) can be rearranged to form str2 and hence we can say that the given strings are a permutation of each other.
@@ -21,7 +21,7 @@ All the characters in the input strings would be in lower case.
 Output Format:
 The only line of output prints either 'true' or 'false', denoting whether the two strings are a permutation of each other or not.
 
-You are not required to print anything. It has already been taken care of. Just implement the function. 
+You are not required to print anything. It has already been taken care of. Just implement the function.
 
 Constraints:
 0 <= N <= 10^6
@@ -46,26 +46,51 @@ false
 #include <cstring>
 using namespace std;
 
+// Time: - O(max(size1, size2)) Space: - O(1)
 bool isPermutation(char input1[], char input2[])
 {
+    int freq1[26] = {0}, freq2[26] = {0};
 
-    int feqarr1[256] = {0}, feqarr2[256] = {0};
     for (int i = 0; input1[i] != '\0'; i++)
     {
-        feqarr1[int(input1[i])]++;
+        freq1[input1[i] - 'a']++;
     }
     for (int i = 0; input2[i] != '\0'; i++)
     {
-        feqarr2[int(input2[i])]++;
+        freq2[input2[i] - 'a']++;
     }
-    for (int i = 0; i < 256; i++)
-    {
-        if (feqarr1[i] != feqarr2[i])
-            return false;
-    }
-    if (strlen(input1) != strlen(input2))
-        return false;
 
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq1[i] != freq2[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Better Solution
+bool isPermutation(char input1[], char input2[])
+{
+    int freq1[26] = {0};
+
+    for (int i = 0; input1[i] != '\0'; i++)
+    {
+        freq1[input1[i] - 'a']++;
+    }
+    for (int i = 0; input2[i] != '\0'; i++)
+    {
+        freq1[input2[i] - 'a']--;
+    }
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq1[i] != 0)
+        {
+            return false;
+        }
+    }
     return true;
 }
 
