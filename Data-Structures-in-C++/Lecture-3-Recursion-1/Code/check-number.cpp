@@ -33,9 +33,9 @@ false
 #include <iostream>
 using namespace std;
 
+// Time: - O(n) Space: - O(n)
 bool checkNumber(int input[], int size, int x)
 {
-
     if (size == 0)
         return false;
 
@@ -43,6 +43,22 @@ bool checkNumber(int input[], int size, int x)
         return true;
 
     return checkNumber(input + 1, size - 1, x);
+}
+
+// Time: - O(n) Space: - O(n)
+bool checkNumber(int input[], int size, int x)
+{
+    if (size == 0)
+    {
+        return false;
+    }
+
+    if (input[size - 1] == x)
+    {
+        return true;
+    }
+
+    return checkNumber(input, size - 1, x);
 }
 
 int main()

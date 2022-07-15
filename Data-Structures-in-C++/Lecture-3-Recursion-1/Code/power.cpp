@@ -28,6 +28,7 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
+// Time: - O(n) Space: - O(n)
 int power(int x, int n)
 {
 
@@ -36,6 +37,19 @@ int power(int x, int n)
 
     return x * power(x, n - 1);
 }
+
+
+//Time: - O(logn) Space: - O(logn)
+int power(int x, int n) {
+	if (n == 0) return 1;
+    
+    int fac = 1;
+    if (n % 2 != 0){
+        fac = x;
+    }
+    return fac * power(x * x, n / 2);
+}
+
 
 int main()
 {

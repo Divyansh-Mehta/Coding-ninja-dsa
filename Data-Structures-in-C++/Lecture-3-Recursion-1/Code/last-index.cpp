@@ -28,9 +28,9 @@ Sample Output :
 #include <iostream>
 using namespace std;
 
+// Time: - O(n) Space: - O(n)
 int lastIndex(int input[], int size, int x)
 {
-
     if (size == 0)
         return -1;
 
@@ -43,6 +43,20 @@ int lastIndex(int input[], int size, int x)
         return ans;
 
     return ans + 1;
+}
+
+// Time: - O(n) Space: - O(n)
+int lastIndex(int input[], int size, int x)
+{
+    if (size == 0)
+        return -1;
+
+    if (input[size - 1] == x)
+        return size - 1;
+
+    int ans = lastIndex(input, size - 1, x);
+
+    return ans;
 }
 
 int main()

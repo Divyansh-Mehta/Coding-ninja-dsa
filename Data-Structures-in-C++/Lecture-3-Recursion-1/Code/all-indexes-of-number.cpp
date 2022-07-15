@@ -26,13 +26,13 @@ Sample Output :
 #include <iostream>
 using namespace std;
 
-/* M-1
+/* M-1 Time: - O(n^2) Space: - O(n)
 int allIndexes(int input[], int size, int x, int output[]) {
     if (size == 0) return 0;
-    
+
     int ans = allIndexes(input + 1, size - 1, x, output);
     for(int i = 0; i < ans; i++) output[i]++;
-    
+
     if (input[0] == x){
         for(int i = ans - 1; i >= 0; i--){
             output[i + 1] = output[i];
@@ -45,10 +45,9 @@ int allIndexes(int input[], int size, int x, int output[]) {
 }
 */
 
-// M-2
+// M-2 Time: - O(n) Space: - O(n)
 int allIndexes(int input[], int size, int x, int output[])
 {
-
     if (size == 0)
         return 0;
 

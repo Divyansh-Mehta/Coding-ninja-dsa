@@ -27,9 +27,9 @@ Sample Output :
 #include <iostream>
 using namespace std;
 
+//Time: - O(n) Space: - O(n)
 int firstIndex(int input[], int size, int x)
 {
-
     if (size == 0)
         return -1;
 
@@ -42,6 +42,23 @@ int firstIndex(int input[], int size, int x)
         return ans;
 
     return ans + 1;
+}
+
+//Time: - O(n) Space: - O(n)
+int firstIndex(int input[], int size, int x)
+{
+    if (size == 0)
+    {
+        return -1;
+    }
+
+    int ans = firstIndex(input, size - 1, x);
+    if (ans == -1 && input[size - 1] == x)
+    {
+        return size - 1;
+    }
+
+    return ans;
 }
 
 int main()

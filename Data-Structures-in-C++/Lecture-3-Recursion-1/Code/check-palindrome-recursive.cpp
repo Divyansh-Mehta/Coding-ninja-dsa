@@ -27,9 +27,18 @@ false
 #include <iostream>
 using namespace std;
 
+int length(char input[])
+{
+    int len = 0;
+    while (input[len] != '\0')
+    {
+        len++;
+    }
+    return len;
+}
+
 bool check(char input[], int start, int end)
 {
-
     if (start >= end)
         return true;
 
@@ -38,14 +47,11 @@ bool check(char input[], int start, int end)
     return check(input, start + 1, end - 1);
 }
 
+// Time: - O(n) Space: - O(n)
 bool checkPalindrome(char input[])
 {
     int start = 0;
-    int end;
-    for (end = 0; input[end] != '\0'; end++)
-    {
-    }
-    end--;
+    int end = length(input) - 1;
     return check(input, start, end);
 }
 

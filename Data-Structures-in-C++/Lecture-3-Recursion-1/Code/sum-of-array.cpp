@@ -30,6 +30,7 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
+// Time: - O(n) Space: - O(n)
 int sum(int input[], int n)
 {
     if (n == 0)
@@ -38,6 +39,21 @@ int sum(int input[], int n)
         return input[0];
 
     return sum(input + 1, n - 1) + input[0];
+}
+
+// Time: - O(n) Space: - O(n)
+int sum(int input[], int n)
+{
+    if (n == 0)
+    {
+        return 0;
+    }
+    if (n == 1)
+    {
+        return input[0];
+    }
+
+    return input[n - 1] + sum(input, n - 1);
 }
 
 int main()

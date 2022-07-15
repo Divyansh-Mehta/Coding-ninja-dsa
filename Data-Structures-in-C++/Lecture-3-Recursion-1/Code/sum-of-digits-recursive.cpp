@@ -26,6 +26,8 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
+
+//Time: - O(log10(n)) Space: - O(log10(n))
 int sumOfDigits(int n)
 {
     if (n == 0)

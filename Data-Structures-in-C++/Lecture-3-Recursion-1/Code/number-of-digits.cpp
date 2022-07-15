@@ -23,10 +23,10 @@ Sample Output 2 :
 1
 */
 
-
 #include <iostream>
 using namespace std;
 
+// Time: - O(log10(n)) Space: - O(log10(n))
 int count(int n)
 {
     if (n == 0)

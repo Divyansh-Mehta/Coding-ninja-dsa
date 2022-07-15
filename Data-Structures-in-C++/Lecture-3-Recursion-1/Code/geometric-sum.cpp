@@ -30,6 +30,7 @@ Sample Output 2 :
 #include <iomanip>
 using namespace std;
 
+//Time: - O(k) Space: - O(k)
 double geometricSum(int k)
 {
     if (k == 0)

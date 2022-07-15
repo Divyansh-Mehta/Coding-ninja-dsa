@@ -26,17 +26,17 @@ Sample Output 2 :
 #include <iostream>
 using namespace std;
 
+// Time: - O(n) Space: - O(n)
 void print(int n)
 {
-    if (n == 1)
+    if (n == 0)
     {
-        cout << 1 << " ";
         return;
     }
+
     print(n - 1);
     cout << n << " ";
 }
-
 int main()
 {
     int n;
