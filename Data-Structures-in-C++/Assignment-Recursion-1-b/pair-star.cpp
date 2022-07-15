@@ -26,26 +26,31 @@ a*a*a*a
 
 #include <iostream>
 using namespace std;
+
 int length(char input[])
 {
     int len = 0;
-    while (true)
+    while (input[len] != '\0')
     {
-        if (input[len] == '\0')
-            return len;
-
         len++;
     }
+    return len;
 }
+
+// Time: - O(n^2) Space: - O(n)
 void pairStar(char input[])
 {
-    if (length(input) == 1)
+    if (input[0] == '\0')
+    {
         return;
+    }
 
     pairStar(input + 1);
+
     if (input[0] == input[1])
     {
-        for (int i = length(input); i >= 1; i--)
+        int size = length(input);
+        for (int i = size; i > 0; i--)
         {
             input[i + 1] = input[i];
         }

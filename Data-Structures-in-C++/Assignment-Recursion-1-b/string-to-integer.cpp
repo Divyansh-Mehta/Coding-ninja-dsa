@@ -25,21 +25,48 @@ Sample Output 2 :
 */
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
+int length(char input[])
+{
+    int len = 0;
+    while (input[len] != '\0')
+    {
+        len++;
+    }
+    return len;
+}
+
+// Time: - O(n ^ 2) Space: - O(n)
 int stringToNumber(char input[])
 {
-    int length = 0;
-    for (; input[length] != '\0'; length++)
-        ;
+    if (input[0] == '\0')
+    {
+        return 0;
+    }
+    int ans = stringToNumber(input + 1);
 
-    if (length == 1)
-        return int(input[0]) - 48;
-    int b = input[length - 1];
-    b = b - 48;
-    input[length - 1] = '\0';
+    return ans + (input[0] - '0') * pow(10, length(input) - 1);
+}
 
-    return stringToNumber(input) * 10 + b;
+int helper(char input[], int size)
+{
+    if (size == 0)
+    {
+        return 0;
+    }
+
+    int ans = helper(input, size - 1);
+
+    return ans * 10 + input[size - 1] - '0';
+}
+
+// Time: - O(n) Space: - O(n)
+int stringToNumber(char input[])
+{
+    int size = length(input);
+    return helper(input, size);
 }
 
 int main()

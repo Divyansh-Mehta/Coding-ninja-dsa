@@ -11,7 +11,7 @@ Modified String
 
 Constraints :
 1 <= |S| <= 10^3
-where |S| represents the length of string S. 
+where |S| represents the length of string S.
 
 Sample Input 1 :
 xaxb
@@ -31,22 +31,23 @@ Sample Output 3:
 #include <iostream>
 using namespace std;
 
+//Time: - O(n^2) //Space: - O(n)
 void removeX(char input[])
 {
-    int length = 0;
-    for (; input[length] != '\0'; length++)
-        ;
-    if (length == 0)
+    if (input[0] == '\0')
+    {
         return;
+    }
 
     removeX(input + 1);
 
     if (input[0] == 'x')
     {
         int i = 0;
-        for (; input[i] != '\0'; i++)
+        while (input[i] != '\0')
         {
             input[i] = input[i + 1];
+            i++;
         }
     }
 }
