@@ -28,6 +28,7 @@ Sample Output 2 :
 */
 
 #include <iostream>
+#include<time.h>
 using namespace std;
 
 void swap(int &a, int &b)
@@ -37,6 +38,7 @@ void swap(int &a, int &b)
     b = temp;
 }
 
+//Two passes
 int partition(int input[], int start, int end)
 {
     int smaller = 0;
@@ -66,6 +68,45 @@ int partition(int input[], int start, int end)
     return start + smaller;
 }
 
+//Improved partition function (one pass only)
+//First element as pivot 
+int partitionIF(int input[], int start, int end)
+{
+	int i = start, j = end, pivot = input[start];
+    while (i < j){
+        while (i <= end && input[i] <= pivot){
+        	i++;
+        }
+        while (j >= start && input[j] > pivot){
+            j--;
+        }
+        if (i < j){
+        	swap(input[i], input[j]);
+        }
+    }
+    swap(input[start], input[j]);
+    return j;
+}
+
+//Last element as pivot
+int partitionIL(int input[], int start, int end)
+{
+	int i = start, j = end, pivot = input[end];
+    while (i < j){
+        while (i <= end && input[i] < pivot){
+        	i++;
+        }
+        while (j >= start && input[j] >= pivot){
+            j--;
+        }
+        if (i < j){
+        	swap(input[i], input[j]);
+        }
+    }
+    swap(input[end], input[i]);
+    return i;
+}
+
 void quickSortHelper(int input[], int start, int end)
 {
     if (start >= end)
@@ -76,6 +117,19 @@ void quickSortHelper(int input[], int start, int end)
     quickSortHelper(input, start, c - 1);
     quickSortHelper(input, c + 1, end);
 }
+
+//Randomised the partition: - This function calls partition function after swapping
+//start element (which will be used as pivot by partition function) with randomly selected element of array.
+//It reduces average time complexity. worst time and best are still O(n^2) and O(nlogn)
+//But chances of getting O(n^2) are reduced
+int partition_r(int input[], int start, int end){
+	srand(time(0));
+    int random = start + rand() % (end - start);
+    swap(input[start], input[random]);
+    return partition(input, start, end);
+}
+
+//Time: - O(nlogn) Space: - O(logn)
 void quickSort(int input[], int size)
 {
     quickSortHelper(input, 0, size - 1);

@@ -27,6 +27,7 @@ xyzwz
 #include <iostream>
 using namespace std;
 
+// Time: - O(n^2) Space: - O(n)
 void removeConsecutiveDuplicates(char *input)
 {
     if (input[0] == '\0')
@@ -41,6 +42,32 @@ void removeConsecutiveDuplicates(char *input)
             input[i] = input[i + 1];
         }
     }
+}
+
+void helper(char *input, int newIndex, int index)
+{
+    if (input[index] == '\0')
+    {
+        input[newIndex++] = input[index - 1];
+        input[newIndex] = '\0';
+        return;
+    }
+
+    if (input[index] == input[index - 1])
+    {
+        helper(input, newIndex, index + 1);
+    }
+    else
+    {
+        input[newIndex] = input[index - 1];
+        helper(input, newIndex + 1, index + 1);
+    }
+}
+
+//Time: - O(n) Space: - O(n)
+void removeConsecutiveDuplicates(char *input)
+{
+    helper(input, 0, 1);
 }
 
 int main()
