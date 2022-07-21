@@ -8,14 +8,14 @@ Note : The order of subsets are not important.
 Input format :
 Line 1 : Integer n, Size of input array
 Line 2 : Array elements separated by space
-Line 3 : K 
+Line 3 : K
 
 Constraints :
 1 <= n <= 20
 
 Sample Input :
-9 
-5 12 3 17 1 18 15 3 17 
+9
+5 12 3 17 1 18 15 3 17
 6
 Sample Output :
 3 3
@@ -26,8 +26,8 @@ You need to save all the subsets in the given 2D output array. And return the nu
 
 In ith row of output array, 1st column contains length of the ith subset. And from 1st column actual subset follows.
 For eg. Input : {1, 3, 4, 2} and K = 5, then output array should contain
-	{{2, 1, 4},	// Length of this subset is 2
-	{2, 3, 2}}	// Length of this subset is 2
+    {{2, 1, 4},	// Length of this subset is 2
+    {2, 3, 2}}	// Length of this subset is 2
 
 Donât print the subsets, just save them in output.
 ***/
@@ -37,7 +37,6 @@ using namespace std;
 
 int subsetSumToK(int input[], int n, int output[][50], int k)
 {
-
     if (n == 0)
     {
         if (k == 0)

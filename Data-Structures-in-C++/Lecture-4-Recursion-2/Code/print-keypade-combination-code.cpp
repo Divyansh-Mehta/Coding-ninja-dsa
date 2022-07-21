@@ -29,6 +29,7 @@ cf
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 string helper(int n)
@@ -62,12 +63,33 @@ void printKeypad(int num, string output = "")
     }
 }
 
+// Better Code
+void helper(int num, string output)
+{
+    if (num == 0)
+    {
+        cout << output << endl;
+        return;
+    }
+    vector<string> kypd{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    int key = num % 10;
+    for (int i = 0; i < kypd[key - 2].size(); i++)
+    {
+        helper(num / 10, kypd[key - 2][i] + output);
+    }
+}
+
+void printKeypad(int num)
+{
+    helper(num, "");
+}
+
 int main()
 {
     int num;
     cin >> num;
 
-    printKeypad(num);
+    // printKeypad(num);
 
     return 0;
 }

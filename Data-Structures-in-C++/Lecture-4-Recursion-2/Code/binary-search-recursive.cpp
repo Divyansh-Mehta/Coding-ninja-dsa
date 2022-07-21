@@ -14,10 +14,10 @@ Line 3 : x (element to be searched)
 
 Sample Input :
 6
-2 3 4 5 6 8 
-5 
+2 3 4 5 6 8
+5
 Sample Output:
-3 
+3
 */
 
 #include <iostream>
@@ -36,9 +36,10 @@ int binarysearchhelper(int input[], int start, int end, int x)
     if (x < input[mid])
         return binarysearchhelper(input, start, mid - 1, x);
 }
+
+// Time: - O(logn) Space: - O(logn)
 int binarySearch(int input[], int size, int element)
 {
-
     binarysearchhelper(input, 0, size - 1, element);
 }
 

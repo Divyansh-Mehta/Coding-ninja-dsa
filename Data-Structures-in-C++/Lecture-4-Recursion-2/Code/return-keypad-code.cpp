@@ -32,6 +32,7 @@ cf
 
 #include <iostream>
 #include <string>
+#include<vector>
 using namespace std;
 
 string helper(int n)
@@ -39,6 +40,7 @@ string helper(int n)
     string code[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     return code[n];
 }
+//Time: - O(n) Space: - O(n)
 int keypad(int num, string output[])
 {
 
@@ -78,6 +80,27 @@ int keypad(int num, string output[])
     }
 
     return smalloutput * size;
+}
+
+////Time: - O(n) Space: - O(n)
+int keypad(int num, string output[]){
+    if (num == 0){
+        output[0] = "";
+        return 1;
+    }
+    vector<string> kypd{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    int size = keypad(num / 10, output);
+    int key = num % 10;
+    for (int i = 1; i < kypd[key - 2].size(); i++){
+        for (int j = 0; j < size; j++){
+            output[size * i + j] = output[j] + kypd[key - 2][i];
+        }
+    }
+    for (int i = 0; i < size; i++){
+        output[i] = output[i] + kypd[key - 2][0];
+    }
+    
+    return size * kypd[key - 2].size();
 }
 
 int main()
