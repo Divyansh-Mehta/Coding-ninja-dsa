@@ -49,6 +49,27 @@ int returnPermutations(string input, string output[])
     return len * k;
 }
 
+// Another approach
+int returnPermutations(string input, string output[])
+{
+    if (input.empty())
+    {
+        output[0] = "";
+        return 1;
+    }
+    string output1[1000];
+    int size = returnPermutations(input.substr(1), output1);
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < output1[i].size() + 1; j++)
+        {
+            output[i * output[i].size() + j] = output1[i].substr(0, j) + input[0] + output1[i].substr(j);
+        }
+    }
+
+    return size * (output1[0].size() + 1);
+}
+
 int main()
 {
     string input;

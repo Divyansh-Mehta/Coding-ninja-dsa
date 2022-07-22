@@ -42,7 +42,7 @@ int getCodes(string input, string output[10000])
     if (input[1] != '\0')
     {
         int no = (input[0] - 48) * 10 + (input[1] - 48);
-        if (no >= 10 && no <= 26)
+        if (no <= 26)
         {
             secondchar = 'a' + no - 1;
             size2 = getCodes(input.substr(2), output2);

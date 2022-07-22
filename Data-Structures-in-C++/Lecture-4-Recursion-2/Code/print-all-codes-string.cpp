@@ -41,7 +41,7 @@ void helper(string input, string output)
     if (input[1] != '\0')
     {
         int no = (input[0] - 48) * 10 + (input[1] - 48);
-        if (no > 9 && no < 27)
+        if (no <= 27)
         {
             char secondchar = 'a' + no - 1;
             helper(input.substr(2), output + secondchar);

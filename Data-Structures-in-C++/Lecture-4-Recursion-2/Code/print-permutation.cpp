@@ -13,7 +13,7 @@ Output Format:
 Print each permutations in a new line
 
 Note:
-You do not need to print anything, it has already been taken care of. Just implement the function.  
+You do not need to print anything, it has already been taken care of. Just implement the function.
 
 Constraint:
 1<=length of STR<=8
@@ -50,9 +50,7 @@ void helper(string input, string output)
 
 void printPermutations(string input)
 {
-
-    string output;
-    helper(input, output);
+    helper(input, "");
 }
 
 int main()
