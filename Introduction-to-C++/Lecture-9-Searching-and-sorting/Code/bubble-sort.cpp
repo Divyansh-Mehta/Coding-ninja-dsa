@@ -91,3 +91,8 @@ int main()
         cout << endl;
     }
 }
+
+// Note: - we can put an optimization - If there is no swapping in a particular pass, the 
+// array has become sorted, and you should skip the remaining passes. For this, you can use
+// a flag variable that is set to true before each pass and is set to false when swapping 
+// occurs. Using this will make the best case as o(n)
